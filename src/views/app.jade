@@ -1,0 +1,12 @@
+extends ./base.jade
+block append style
+    link( rel = "stylesheet", type = "text/css", href = "/assets/css/app.css" )
+    link( rel = "stylesheet", type = "text/css", href = "/assets/css/style.css" )
+block body
+  #game
+block scripts
+  script( src = "/assets/src/game/phaser/phaser.min.js" )
+  script( src = "/assets/src/appfunctions.js" )
+  script( src = "/assets/src/app.js" )
+  script( src = "/assets/src/game/Game.js" )
+  script( src = "socket.io/socket.io.js" )

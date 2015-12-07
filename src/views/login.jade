@@ -1,0 +1,16 @@
+extends ./base.jade
+block append style
+    link( rel = "stylesheet", type = "text/css", href = "/assets/css/style.css" )
+    link( rel = "stylesheet", type = "text/css", href = "/assets/css/forms.css" )
+block body
+  section#form
+    img#logo( src = "/assets/img/page/edenlogo.png", alt = "Eden" )
+    form#loginForm( class = "mainForm", name = "loginForm", action = "/login", method = "POST" )
+      input#user( type = "text", name = "username", placeholder = "username" )
+      input#pass( type = "password", name = "pass", placeholder = "password" )
+      input( type = "hidden", name = "_csrf", value = "#{csrfToken}" )
+      a#loginSubmit( class = "formSubmit", href = "#" ) Sign in
+      a( class = "link" href = "/signup" ) Don't have an account?<br>Sign up!
+block scripts
+  script( src = "/assets/src/appfunctions.js" )
+  script( src = "/assets/src/signin.js" )
