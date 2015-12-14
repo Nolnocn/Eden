@@ -40,6 +40,7 @@ AccountSchema.methods.toAPI = function() {
     };
 };
 
+// Validates the password
 AccountSchema.methods.validatePassword = function(password, callback) {
 	var pass = this.password;
 	
@@ -51,6 +52,7 @@ AccountSchema.methods.validatePassword = function(password, callback) {
 	});
 };
 
+// Finds an account by username
 AccountSchema.statics.findByUsername = function(name, callback) {
     var search = {
         username: name
@@ -59,6 +61,7 @@ AccountSchema.statics.findByUsername = function(name, callback) {
     return AccountModel.findOne(search, callback);
 };
 
+// Generates a hash for the password
 AccountSchema.statics.generateHash = function(password, callback) {
 	var salt = crypto.randomBytes(saltLength);
 	
@@ -67,6 +70,7 @@ AccountSchema.statics.generateHash = function(password, callback) {
 	});
 };
 
+// Authenticates a login
 AccountSchema.statics.authenticate = function(username, password, callback) {
 	return AccountModel.findByUsername(username, function(err, doc) {
 

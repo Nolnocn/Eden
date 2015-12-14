@@ -2,22 +2,33 @@ var models = require( "../models" );
 
 var Account = models.Account;
 
+// Renders the login page
 function loginPage( req, res )
 {
     res.render( "login", { csrfToken: req.csrfToken() } );
 }
 
+// Renders the sign up page
 function signupPage( req, res )
 {
     res.render( "signup", { csrfToken: req.csrfToken() } );
 }
 
+// Renders the play page
+function play( req, res )
+{
+    //console.log( req.session.account.username );
+    res.render( "app", { csrfToken: req.csrfToken(), name: req.session.account.username } );
+}
+
+// Logs out of the current session
 function logout( req, res )
 {
     req.session.destroy();
     res.redirect( "/" );
 }
 
+// Logs in
 function login( req, res )
 {
     var body = req.body;
@@ -33,9 +44,11 @@ function login( req, res )
         }
         
         req.session.account = account.toAPI();
+        res.json( { redirect: "/play" } );
     } );
 }
 
+// Signs up
 function signup( req, res )
 {
     var body = req.body;
@@ -70,12 +83,6 @@ function signup( req, res )
             res.json( { redirect: "/play" } );
         } );
     } );
-}
-
-function play( req, res )
-{
-    console.log( req.session.account.username );
-    res.render( "app", { csrfToken: req.csrfToken(), name: req.session.account.username } );
 }
 
 module.exports.loginPage = loginPage;

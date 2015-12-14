@@ -1,12 +1,17 @@
 extends ./base.jade
 block append style
-    link( rel = "stylesheet", type = "text/css", href = "/assets/css/app.css" )
     link( rel = "stylesheet", type = "text/css", href = "/assets/css/style.css" )
 block body
   #game
+  a#logout( class = "formSubmit", href="/logout") Log out
 block scripts
+  script( src = "socket.io/socket.io.js" )
   script( src = "/assets/src/game/phaser/phaser.min.js" )
   script( src = "/assets/src/appfunctions.js" )
-  script( src = "/assets/src/app.js" )
-  script( src = "/assets/src/game/Game.js" )
-  script( src = "socket.io/socket.io.js" )
+  script( src = "/assets/src/game/game.js" )
+  script( src = "/assets/src/game/gameManager.js" )
+  script( src = "/assets/src/game/characterManager.js" )
+  script( src = "/assets/src/game/worldManager.js" )
+  script( src = "/assets/src/game/socketManager.js" )
+  script( src = "/assets/src/game/Character.js" )
+  script( src = "/assets/src/game/Spectator.js" )

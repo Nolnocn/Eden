@@ -1,3 +1,4 @@
+// Verifies the user is logged in
 function requiresLogin( req, res, next )
 {
     if( !req.session.account )
@@ -8,6 +9,7 @@ function requiresLogin( req, res, next )
     next();
 }
 
+// Verifies the user is logged out
 function requiresLogout( req, res, next )
 {
     if( req.session.account )
@@ -18,6 +20,7 @@ function requiresLogout( req, res, next )
     next();
 }
 
+// Verifies the user is using https
 function requiresSecure( req, res, next )
 {
     if( req.headers[ "x-forwarded-proto" ] != "https" )
@@ -27,6 +30,7 @@ function requiresSecure( req, res, next )
     next();
 }
 
+// Debug to bypass https requirement
 function bypassSecure( req, res, next )
 {
     next();

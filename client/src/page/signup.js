@@ -2,6 +2,7 @@
 
 var app = app || {};
 
+// Handles serializing the sign up form and sending it to the server for validation
 $( document ).ready( function() {
     $( "#signupSubmit" ).on( "click", function( e ) {
         e.preventDefault();

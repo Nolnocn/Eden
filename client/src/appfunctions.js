@@ -2,12 +2,15 @@
 
 var app = app || {};
 
+// iife to set some app util functions
 (function() {
+    // Shows an error alert
     function handleError( message )
     {
         alert( message );
     }
 
+    // Sends an ajax request to the server
     function sendAjax( action, data )
     {
         $.ajax( {

@@ -9,6 +9,7 @@ var session = require( "express-session" );
 var RedisStore = require( "connect-redis" )( session );
 var url = require( "url" );
 var csrf = require( "csurf" );
+var game = require( "./game" );
 
 var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/Eden";
 
@@ -77,11 +78,21 @@ app.use( function( err, req, res, next ) {
 
 router( app );
 
-var io = require('socket.io').listen( app.listen( port, function( err ) {
+// Kicking off the socket-y stuff and starting the game
+var io = require( "socket.io" ).listen( app.listen( port, function( err ) {
     if( err )
     {
         throw err;
     }
+
+    var socketManager = require( "./game/network/socketManager.js" );
+    socketManager( io );
+    
+    var broadcast = require( "./game/network/broadcast.js" );
+    broadcast.init( io );
+    
+    var game = require( "./game" );
+    game.init();
     
     console.log( "Listening on port " + port );
 } ) );
