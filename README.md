@@ -1,3 +1,3 @@
-# Jokemon
-RM2 MVC Project
+# Eden
+RM2 Final Project
 
