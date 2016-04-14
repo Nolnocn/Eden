@@ -99,6 +99,8 @@ function onPlayerRemoved( socket )
 {
     if( socket.character )
     {
+        socket.character.destination = socket.character.position;
+        socket.broadcast.emit( "charDestUpdate", socket.character );
         // hand the character over to a spectator / ai
         setCharacterController( socket.character );
     }
